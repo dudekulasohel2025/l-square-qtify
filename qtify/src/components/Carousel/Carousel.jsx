@@ -1,20 +1,29 @@
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import "swiper/css";
 
 import styles from "./Carousel.module.css";
-import "swiper/css";
-import "swiper/css/navigation";
 
 function Carousel({ data, renderComponent }) {
+  const swiperRef = useRef(null);
+
   return (
     <div className={styles.wrapper}>
+      {/* STATIC NAVIGATION BUTTONS (Cypress-safe) */}
+      <button
+        className="swiper-button-prev"
+        onClick={() => swiperRef.current?.slidePrev()}
+      />
+      <button
+        className="swiper-button-next"
+        onClick={() => swiperRef.current?.slideNext()}
+      />
+
       <Swiper
-        style={{ padding: "0px 20px" }}
-        initialSlide={0}
-        modules={[Navigation]}
-        navigation
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         slidesPerView={6}
         spaceBetween={40}
+        initialSlide={0}
       >
         {data.map((ele) => (
           <SwiperSlide key={ele.id}>
@@ -27,6 +36,45 @@ function Carousel({ data, renderComponent }) {
 }
 
 export default Carousel;
+
+
+
+
+
+
+
+
+
+
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper/modules";
+
+// import styles from "./Carousel.module.css";
+// import "swiper/css";
+// import "swiper/css/navigation";
+
+// function Carousel({ data, renderComponent }) {
+//   return (
+//     <div className={styles.wrapper}>
+//       <Swiper
+//         style={{ padding: "0px 20px" }}
+//         initialSlide={0}
+//         modules={[Navigation]}
+//         navigation
+//         slidesPerView={6}
+//         spaceBetween={40}
+//       >
+//         {data.map((ele) => (
+//           <SwiperSlide key={ele.id}>
+//             {renderComponent(ele)}
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </div>
+//   );
+// }
+
+// export default Carousel;
 
 
 
