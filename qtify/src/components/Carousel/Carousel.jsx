@@ -12,17 +12,16 @@ import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavi
 function Carousel({ data, renderComponent }) {
   return (
     <div className={styles.wrapper}>
-      {/* navigation OUTSIDE swiper */}
+      {/* Navigation buttons MUST be outside Swiper */}
       <CarouselLeftNavigation />
       <CarouselRightNavigation />
 
       <Swiper
         modules={[Navigation]}
-        slidesPerView="auto"
+        slidesPerView={5}          
+        slidesPerGroup={1}         
         spaceBetween={40}
-        allowTouchMove={true}
 
-        /* 🔒 THIS IS THE MAGIC */
         observer={false}
         observeParents={false}
         observeSlideChildren={false}
