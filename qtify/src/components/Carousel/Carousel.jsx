@@ -15,6 +15,11 @@ function Carousel({ data, renderComponent }) {
         slidesPerView={6}
         spaceBetween={40}
         initialSlide={0}
+
+        /* 🔴 THIS IS THE KEY FIX */
+        observer={false}
+        observeParents={false}
+        observeSlideChildren={false}
       >
         {data.map((ele) => (
           <SwiperSlide key={ele.id}>
@@ -27,6 +32,7 @@ function Carousel({ data, renderComponent }) {
 }
 
 export default memo(Carousel);
+
 
 
 
