@@ -1,38 +1,39 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import styles from "./Carousel.module.css";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
+import styles from "./Carousel.module.css";
 import CarouselLeftNavigation from "./CarouselLeftNavigation/CarouselLeftNavigation";
 import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavigation";
 
 function Carousel({ data, renderComponent }) {
-  const swiperRef = useRef(null);
-
   return (
     <div className={styles.wrapper}>
-      {/* NAVIGATION MUST BE OUTSIDE */}
+      {/* navigation OUTSIDE swiper */}
       <CarouselLeftNavigation />
       <CarouselRightNavigation />
 
       <Swiper
         modules={[Navigation]}
-        slidesPerView={"auto"}
+        slidesPerView="auto"
         spaceBetween={40}
-        allowTouchMove
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
+        allowTouchMove={true}
+
+        /* 🔒 THIS IS THE MAGIC */
+        observer={false}
+        observeParents={false}
+        observeSlideChildren={false}
+
         navigation={{
           prevEl: ".carousel-left-nav",
           nextEl: ".carousel-right-nav",
         }}
       >
-        {data.map((ele, index) => (
-          <SwiperSlide key={index}>
+        {data.map((ele, idx) => (
+          <SwiperSlide key={idx}>
             {renderComponent(ele)}
           </SwiperSlide>
         ))}
@@ -42,6 +43,60 @@ function Carousel({ data, renderComponent }) {
 }
 
 export default Carousel;
+
+
+
+
+
+
+
+
+
+
+// import React, { useRef } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper/modules";
+// import styles from "./Carousel.module.css";
+
+// import "swiper/css";
+// import "swiper/css/navigation";
+
+// import CarouselLeftNavigation from "./CarouselLeftNavigation/CarouselLeftNavigation";
+// import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavigation";
+
+// function Carousel({ data, renderComponent }) {
+//   const swiperRef = useRef(null);
+
+//   return (
+//     <div className={styles.wrapper}>
+//       {/* NAVIGATION MUST BE OUTSIDE */}
+//       <CarouselLeftNavigation />
+//       <CarouselRightNavigation />
+
+//       <Swiper
+//         modules={[Navigation]}
+//         slidesPerView={"auto"}
+//         spaceBetween={40}
+//         allowTouchMove
+//         onSwiper={(swiper) => {
+//           swiperRef.current = swiper;
+//         }}
+//         navigation={{
+//           prevEl: ".carousel-left-nav",
+//           nextEl: ".carousel-right-nav",
+//         }}
+//       >
+//         {data.map((ele, index) => (
+//           <SwiperSlide key={index}>
+//             {renderComponent(ele)}
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </div>
+//   );
+// }
+
+// export default Carousel;
 
 
 

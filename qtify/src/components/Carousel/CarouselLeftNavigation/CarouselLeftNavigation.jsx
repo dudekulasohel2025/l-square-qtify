@@ -1,13 +1,28 @@
 import styles from "./CarouselLeftNavigation.module.css";
-import { ReactComponent as LeftArrow } from "../../../assets/LeftArrow.svg";
 
 export default function CarouselLeftNavigation() {
   return (
-    <div className={`${styles.leftNavigation} carousel-left-nav`}>
-      <LeftArrow />
-    </div>
+    <button
+      type="button"
+      className={`${styles.leftNavigation} carousel-left-nav`}
+      aria-label="previous-slide"
+    />
   );
 }
+
+
+
+
+// import styles from "./CarouselLeftNavigation.module.css";
+// import { ReactComponent as LeftArrow } from "../../../assets/LeftArrow.svg";
+
+// export default function CarouselLeftNavigation() {
+//   return (
+//     <div className={`${styles.leftNavigation} carousel-left-nav`}>
+//       <LeftArrow />
+//     </div>
+//   );
+// }
 
 
 

@@ -1,13 +1,31 @@
 import styles from "./CarouselRightNavigation.module.css";
-import { ReactComponent as RightArrow } from "../../../assets/RightArrow.svg";
 
 export default function CarouselRightNavigation() {
   return (
-    <div className={`${styles.rightNavigation} carousel-right-nav`}>
-      <RightArrow />
-    </div>
+    <button
+      type="button"
+      className={`${styles.rightNavigation} carousel-right-nav`}
+      aria-label="next-slide"
+    />
   );
 }
+
+
+
+
+
+
+
+// import styles from "./CarouselRightNavigation.module.css";
+// import { ReactComponent as RightArrow } from "../../../assets/RightArrow.svg";
+
+// export default function CarouselRightNavigation() {
+//   return (
+//     <div className={`${styles.rightNavigation} carousel-right-nav`}>
+//       <RightArrow />
+//     </div>
+//   );
+// }
 
 
 
