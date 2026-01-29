@@ -5,9 +5,6 @@ import styles from "./Carousel.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import CarouselLeftNavigation from "./CarouselLeftNavigation/CarouselLeftNavigation";
-import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavigation";
-
 function Carousel({ data, renderComponent }) {
   return (
     <div className={styles.wrapper}>
@@ -15,15 +12,10 @@ function Carousel({ data, renderComponent }) {
         style={{ padding: "0px 20px" }}
         initialSlide={0}
         modules={[Navigation]}
-        slidesPerView={"auto"}
+        navigation
+        slidesPerView={6}
         spaceBetween={40}
-        allowTouchMove
       >
-        <div>
-          <CarouselLeftNavigation />
-          <CarouselRightNavigation />
-        </div>
-
         {data.map((ele) => (
           <SwiperSlide key={ele.id}>
             {renderComponent(ele)}
@@ -37,6 +29,62 @@ function Carousel({ data, renderComponent }) {
 export default Carousel;
 
 
+
+
+
+
+
+
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper/modules";
+
+// import styles from "./Carousel.module.css";
+// import "swiper/css";
+// import "swiper/css/navigation";
+
+// // import CarouselLeftNavigation from "./CarouselLeftNavigation/CarouselLeftNavigation";
+// // import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavigation";
+
+// function Carousel({ data, renderComponent }) {
+//   return (
+//     <div className={styles.wrapper}>
+//       <Swiper
+//       style={{ padding: "0px 20px" }}
+//       initialSlide={0}
+//       modules={[Navigation]}
+//       navigation
+//       slidesPerView={6}
+//       spaceBetween={40}
+//     >
+
+
+//         {/* <div>
+//           <CarouselLeftNavigation />
+//           <CarouselRightNavigation />
+//         </div> */}
+
+//         {data.map((ele) => (
+//           <SwiperSlide key={ele.id}>
+//             {renderComponent(ele)}
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </div>
+//   );
+// }
+
+// export default Carousel;
+
+
+
+//  <Swiper
+//         style={{ padding: "0px 20px" }}
+//         initialSlide={0}
+//         modules={[Navigation]}
+//         slidesPerView={"auto"}
+//         spaceBetween={40}
+//         allowTouchMove
+//       >
 
 
 
