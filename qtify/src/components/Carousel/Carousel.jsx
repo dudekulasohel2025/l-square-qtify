@@ -14,29 +14,25 @@ function Carousel({ data, renderComponent }) {
 
   return (
     <div className={styles.wrapper}>
+      {/* NAVIGATION MUST BE OUTSIDE */}
+      <CarouselLeftNavigation />
+      <CarouselRightNavigation />
+
       <Swiper
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
         modules={[Navigation]}
         slidesPerView={"auto"}
         spaceBetween={40}
-        navigation={{
-          nextEl: ".swiper-button-next-custom",
-          prevEl: ".swiper-button-prev-custom",
-        }}
         allowTouchMove
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        navigation={{
+          prevEl: ".carousel-left-nav",
+          nextEl: ".carousel-right-nav",
+        }}
       >
-        {/* Stable navigation buttons */}
-        <div className="swiper-button-prev-custom">
-          <CarouselLeftNavigation />
-        </div>
-        <div className="swiper-button-next-custom">
-          <CarouselRightNavigation />
-        </div>
-
-        {data.map((ele) => (
-          <SwiperSlide key={ele.id}>
+        {data.map((ele, index) => (
+          <SwiperSlide key={index}>
             {renderComponent(ele)}
           </SwiperSlide>
         ))}
