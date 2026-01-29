@@ -1,26 +1,40 @@
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { memo } from "react";
+import styles from "./Carousel.module.css";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import styles from "./Carousel.module.css";
+
+import CarouselLeftNavigation from "./CarouselLeftNavigation/CarouselLeftNavigation";
+import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavigation";
 
 function Carousel({ data, renderComponent }) {
+  const swiperRef = useRef(null);
+
   return (
     <div className={styles.wrapper}>
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
         modules={[Navigation]}
-        navigation
-        slidesPerView={6}
+        slidesPerView={"auto"}
         spaceBetween={40}
-        initialSlide={0}
-
-        /* 🔴 THIS IS THE KEY FIX */
-        observer={false}
-        observeParents={false}
-        observeSlideChildren={false}
+        navigation={{
+          nextEl: ".swiper-button-next-custom",
+          prevEl: ".swiper-button-prev-custom",
+        }}
+        allowTouchMove
       >
+        {/* Stable navigation buttons */}
+        <div className="swiper-button-prev-custom">
+          <CarouselLeftNavigation />
+        </div>
+        <div className="swiper-button-next-custom">
+          <CarouselRightNavigation />
+        </div>
+
         {data.map((ele) => (
           <SwiperSlide key={ele.id}>
             {renderComponent(ele)}
@@ -31,7 +45,52 @@ function Carousel({ data, renderComponent }) {
   );
 }
 
-export default memo(Carousel);
+export default Carousel;
+
+
+
+
+
+
+
+
+
+
+//GOT succes 
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper/modules";
+// import { memo } from "react";
+
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import styles from "./Carousel.module.css";
+
+// function Carousel({ data, renderComponent }) {
+//   return (
+//     <div className={styles.wrapper}>
+//       <Swiper
+//         modules={[Navigation]}
+//         navigation
+//         slidesPerView={6}
+//         spaceBetween={40}
+//         initialSlide={0}
+
+//         /* 🔴 THIS IS THE KEY FIX */
+//         observer={false}
+//         observeParents={false}
+//         observeSlideChildren={false}
+//       >
+//         {data.map((ele) => (
+//           <SwiperSlide key={ele.id}>
+//             {renderComponent(ele)}
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </div>
+//   );
+// }
+
+// export default memo(Carousel);
 
 
 
