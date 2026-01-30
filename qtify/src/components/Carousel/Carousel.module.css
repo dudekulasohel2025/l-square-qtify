@@ -1,5 +1,22 @@
 .wrapper {
   position: relative;
+  overflow: hidden; 
+}
+
+/* This ensures slides outside viewport are NEVER visible */
+.wrapper :global(.swiper-wrapper) {
+  overflow: hidden;
+}
+
+.wrapper :global(.swiper-slide) {
+  flex-shrink: 0;
+}
+
+
+
+
+/* .wrapper {
+  position: relative;
 }
 
 .leftNavigation {
@@ -16,4 +33,4 @@
   top: 40%;
   transform: translateY(-50%);
   z-index: 10;
-}
+} */

@@ -1,10 +1,8 @@
-import styles from "./CarouselRightNavigation.module.css";
-
 export default function CarouselRightNavigation() {
   return (
     <button
       type="button"
-      className={`${styles.rightNavigation} carousel-right-nav`}
+      className="carousel-right-nav"
       aria-label="next-slide"
     />
   );

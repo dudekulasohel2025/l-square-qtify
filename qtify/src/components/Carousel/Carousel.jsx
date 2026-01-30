@@ -12,15 +12,20 @@ import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavi
 function Carousel({ data, renderComponent }) {
   return (
     <div className={styles.wrapper}>
-      {/* Navigation buttons MUST be outside Swiper */}
+      {/* Navigation buttons must be outside Swiper */}
       <CarouselLeftNavigation />
       <CarouselRightNavigation />
 
       <Swiper
         modules={[Navigation]}
-        slidesPerView={5}          
-        slidesPerGroup={1}         
+        slidesPerView={5}
+        slidesPerGroup={1}
         spaceBetween={40}
+
+        /* 🔒 ABSOLUTELY REQUIRED FOR CYPRESS */
+        speed={0}
+        allowTouchMove={false}
+        watchSlidesProgress={false}
 
         observer={false}
         observeParents={false}
@@ -42,6 +47,22 @@ function Carousel({ data, renderComponent }) {
 }
 
 export default Carousel;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

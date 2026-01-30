@@ -1,14 +1,13 @@
-import styles from "./CarouselLeftNavigation.module.css";
-
 export default function CarouselLeftNavigation() {
   return (
     <button
       type="button"
-      className={`${styles.leftNavigation} carousel-left-nav`}
+      className="carousel-left-nav"
       aria-label="previous-slide"
     />
   );
 }
+
 
 
 
